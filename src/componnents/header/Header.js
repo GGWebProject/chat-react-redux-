@@ -1,7 +1,6 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {logOut} from '../../redux/actions';
-import './header.module.sass';
 import userIcon from './user_icon.png';
 
 const Header = () => {

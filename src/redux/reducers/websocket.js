@@ -1,6 +1,6 @@
 import { SOCKET_STATUS } from "../actionTypes";
 
-const socketErrorReducer = (state = false, action) => {
+const webSocketReducer = (state = false, action) => {
   switch (action.type) {
     case SOCKET_STATUS: {
       const { status } = action.payload;
@@ -12,4 +12,4 @@ const socketErrorReducer = (state = false, action) => {
   }
 };
 
-export default socketErrorReducer;
+export default webSocketReducer;

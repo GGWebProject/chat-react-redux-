@@ -1,6 +1,5 @@
 import React from "react"
 import Form from "../form/Form";
-import './authorization.module.sass';
 
 const  Authorization = () => {
 
