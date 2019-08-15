@@ -1,5 +1,5 @@
 import React from "react";
-import "./ChatWindow.module.sass";
+import "./chatWindow.module.sass";
 import Form from "../form/Form";
 import MessagesList from "./messagesList/MessageList";
 import {useSelector} from "react-redux";

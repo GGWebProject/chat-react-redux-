@@ -97,9 +97,9 @@ class Form extends PureComponent {
                 onInput={this.handleChange}
                 defaultValue={this.state.userName}
               />
-              <button type="submit">LogIN</button>
+              <button className="button_sign" type="submit">Sign in</button>
               { !inputValue &&
-              <span className="input__description">*Для входа в чат введите ваше имя</span> }
+              <span className="input__description">* Enter your name to enter the chat</span> }
             </>
         }
       </form>

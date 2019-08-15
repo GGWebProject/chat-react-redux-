@@ -8,16 +8,15 @@ function ChatApp() {
   const isLogin = useSelector( state => state.logged.status);
   return (
     <>
-      <Header/>
-      <div className="chat-app__wrapper">
-
+      <section className="chat-app__wrapper">
+        <Header/>
         {
           isLogin ?
             <ChatWindow />
             :
             <Authorization />
         }
-      </div>
+      </section>
     </>
   )
 }
