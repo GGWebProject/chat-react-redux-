@@ -1,3 +1,3 @@
-const socketCreate = () => new WebSocket("ws://st-chat.shas.tel");
+const socketCreate = () => new WebSocket("wss://wssproxy.herokuapp.com/");
 
 export default socketCreate;
