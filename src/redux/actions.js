@@ -44,8 +44,9 @@ export const setWindowVisibilityStatus = (status) => {
 };
 
 export const saveNewMessage = message => {
-  const isWindowVivible = store.getState(state => state.isWindowVisible);
-  isWindowVivible && notify();
+  //send notification when window is hidden
+  const isWindowVisible = store.getState().isWindowVisible;
+  !isWindowVisible && notify();
 
   return (
     {
@@ -75,8 +76,9 @@ export const logIn = userName => {
 export const logOut = () => {
   //close opened socket and remove visibility listener
   socket.close(1000);
-  document.onvisibilitychange = null;
-
+  // document.onvisibilitychange = null;
+  window.onblur = null;
+  window.onfocus = null;
   return {
     type: SIGN_OUT
   }
@@ -118,22 +120,17 @@ function socketReconnect() {
 }
 
 function createVisibilityListener() {
-  if (!document.onvisibilitychange) {
-    document.onvisibilitychange = () => {
-      if (document.visibilityState === 'visible') {
-        store.dispatch(setWindowVisibilityStatus(true));
-      } else {
-        store.dispatch(setWindowVisibilityStatus(false));
-      }
-    }
-  }
+  window.onblur = () => {
+    store.dispatch(setWindowVisibilityStatus(false));
+  };
+
+  window.onfocus = () => {
+    store.dispatch(setWindowVisibilityStatus(true));
+  };
 }
 
 function notify() {
-  window.notification = new Notification("test test");
+  window.notification = new Notification("Chat RS", { body: 'Новое сообщение!', dir: 'auto' });
   const { notification } = window;
-  notification.onclick = () => {
-    window.open("http://localhost:3000/");
-  };
   setTimeout( () => { notification.close(); }, 5000);
 }
