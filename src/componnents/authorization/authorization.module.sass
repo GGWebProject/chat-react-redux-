@@ -1,52 +1,47 @@
 .chat__authorization
-  border: 3px solid #ffffff
-  border-radius: 15px
-  width: 340px
-  height: 280px
   position: absolute
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  background-color: #ffffff88
-  transition: background-color .3s, border-radius .3s
-  &:hover
-    background-color: #ffffffff
-    border-radius: 5px
-    input
-      border-color: #333
-  h2
-    font-size: 1.8rem
-    margin-top: 0
+  z-index: -1
+  opacity: 0
+  transition-property: opacity
+  transition-duration: 1s
+  transition-delay: 1s
   form
-    position: relative
     display: flex
     flex-direction: column
     align-items: center
-    justify-content: flex-start
-    min-width: 180px
-    width: 70%
-    font-family: Arial
+    justify-content: center
+    width: 90%
+    min-width: 280px
+    transition: filter 1s, opacity 1s
+    h3
+      text-align: center
+      font-size: 2rem
+      margin: 0 0 20px
     input
-      border: none
-      background-color: transparent
-      border-bottom: 3px solid #ffffff
-      font-size: 1.2rem
       width: 100%
-      padding: 5px 10px
+      border: none
+      border-bottom: 2px solid #eeeeee
+      font-size: 1.3rem
+      padding: 10px
       transition: border-color .3s
       &:focus
-        border-color: #d70074
-    button
+        border-color: #333333
+    & > * + *
       margin-top: 20px
     .input__description
       position: absolute
-      top: calc(100% + 10px)
+      top: 100%
       left: 0
       width: 100%
-      font-size: 0.8rem
-      color: #F04F70
-      font-weight: bold
+      font-size: 1rem
+    &.login
+      opacity: 0
+      filter: blur(3px)
+
+.join
+  .chat__authorization
+    opacity: 1
+    z-index: 1

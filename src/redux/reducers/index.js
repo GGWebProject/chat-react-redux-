@@ -3,6 +3,7 @@ import webSocketReducer from "./websocket";
 import loggedReducer from './logged';
 import notificationReducer from './notification';
 import windowVisibilityReducer from './windowVisibility';
+import joinedReducer from "./join";
 import {combineReducers} from 'redux'
 
 const allReducers = combineReducers({
@@ -12,6 +13,7 @@ const allReducers = combineReducers({
   isSocketError: webSocketReducer,
   enableNotification: notificationReducer,
   isWindowVisible: windowVisibilityReducer,
+  joined: joinedReducer,
 });
 
 export default allReducers;

@@ -1,40 +1,61 @@
 .chat-app__header
-  position: fixed
-  top: 0
-  left: 0
-  width: 100%
-  z-index: 100
-  height: 80px
-  .wrapper
-    display: flex
-    align-items: center
-    justify-content: space-between
-    height: 100%
-  .user
-    display: flex
-    align-items: center
-    height: 100%
-    background-color: #ffffff88
-    border-radius: 0 0 15px 15px
-    padding: 0 15px
-    transition: background-color .3s, border-radius .3s
-    border: 3px solid transparent
-    &:hover
-      background-color: #ffffffff
-      border-radius: 0 0 5px 5px
-    &__img
-      width: 50px
-      height: 50px
-      img
-        width: 100%
-        height: 100%
-        object-fit: contain
-    &__name
-      font-size: 1.4rem
-      margin: 0 10px
-      font-weight: bolder
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 460px
+  transition: transform 1s, top 1s
 
-  h1
-    margin: 0
-    font-size: 2rem
-    color: #fff
+.join
+  .chat-app__header
+    position: fixed
+    top: 0
+    transform: translate(-50%, 60px)
+    @media (max-width: 900px)
+      transform: translate(-50%, 40px)
+    @media (max-width: 480px)
+      transform: translate(-50%, 20px)
+
+
+
+//.chat-app__header
+//  position: fixed
+//  top: 0
+//  left: 0
+//  width: 100%
+//  z-index: 100
+//  height: 80px
+//  .wrapper
+//    display: flex
+//    align-items: center
+//    justify-content: space-between
+//    height: 100%
+//  .user
+//    display: flex
+//    align-items: center
+//    height: 100%
+//    background-color: #ffffff88
+//    border-radius: 0 0 15px 15px
+//    padding: 0 15px
+//    transition: background-color .3s, border-radius .3s
+//    border: 3px solid transparent
+//    &:hover
+//      background-color: #ffffffff
+//      border-radius: 0 0 5px 5px
+//    &__img
+//      width: 50px
+//      height: 50px
+//      img
+//        width: 100%
+//        height: 100%
+//        object-fit: contain
+//    &__name
+//      font-size: 1.4rem
+//      margin: 0 10px
+//      font-weight: bolder
+//
+//  h1
+//    margin: 0
+//    font-size: 2rem
+//    color: #fff
+

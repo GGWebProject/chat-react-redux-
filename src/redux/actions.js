@@ -1,4 +1,7 @@
-import { SAVE_MESSAGE, SIGN_IN, SIGN_OUT, SEND_MESSAGE, SOCKET_STATUS, NOTIFICATION_STATUS, WINDOW_VISIBILITY } from "./actionTypes";
+import {
+    SAVE_MESSAGE, SIGN_IN, SIGN_OUT, SEND_MESSAGE,
+    SOCKET_STATUS, NOTIFICATION_STATUS, WINDOW_VISIBILITY, JOIN
+  } from "./actionTypes";
 import socketCreate from "../componnents/wSoscet/WSocket";
 import store from "./store";
 
@@ -31,6 +34,12 @@ export const setNotificationStatus = (status) => {
     payload: {
       status,
     },
+  }
+};
+
+export const join = () => {
+  return {
+    type: JOIN,
   }
 };
 

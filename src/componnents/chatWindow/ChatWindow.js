@@ -16,7 +16,7 @@ const ChatWindow = () => {
       <div className="wrapper">
         <main role="main">
           <h2 className="visually-hidden">Chat</h2>
-          <MessagesList messages={savedMessages}/>
+          {/*<MessagesList messages={savedMessages}/>*/}
         </main>
         <footer className="chat__footer">
           <Form type="sendMessage"/>

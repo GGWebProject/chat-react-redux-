@@ -5,13 +5,15 @@ import Header from "./componnents/header/Header";
 import {useSelector} from "react-redux";
 import store from "./redux/store"
 import {setNotificationStatus} from "./redux/actions";
+import Button from "./componnents/button/Button";
 
 function ChatApp() {
   const isLogin = useSelector( state => state.logged.status);
+  const joined = useSelector(state => state.joined);
   createNotification();
   return (
     <>
-      <section className="chat-app__wrapper">
+      <section className={`chat-app__wrapper ${joined ? 'join' : ''}`}>
         <Header/>
         {
           isLogin ?

@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import { connect } from "react-redux"
 import {logIn, sendUserMessage} from "../../redux/actions";
+import Button from "../button/Button";
 function createMessage(user, text) {
   return { from: user, message: text };
 }
@@ -11,6 +12,7 @@ class Form extends PureComponent {
     this.state = {
       inputValue: null,
       userName: null,
+      formValid: false,
     };
     this.inputMessageRef = createRef();
     this.handleChange = this.handleChange.bind(this);
@@ -23,30 +25,39 @@ class Form extends PureComponent {
     const { value: inputValue } = e.currentTarget;
     this.setState({
       inputValue,
+      formValid: !!inputValue,
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const { logged } = this.props;
+    const { formValid } = this.state;
+    const { currentTarget: form } = e;
+
+    if (!formValid) return false;
+
     if (logged.status) {
       this.sendMessage()
     } else {
+      form.classList.add('login');
       this.authorization();
     }
-    return false
   }
 
   authorization() {
     const { inputValue } = this.state;
     const { logIn } = this.props;
-    inputValue && logIn(inputValue);
+    setTimeout(()=>{
+      logIn(inputValue);
+    }, 1300);
   }
 
   sendMessage() {
     const { inputValue, userName } = this.state;
     const { sendUserMessage } = this.props;
     const userMessage = inputValue && createMessage(userName, inputValue);
+
     if (userMessage) {
       this.setState({
         userMessage,
@@ -65,17 +76,18 @@ class Form extends PureComponent {
     } else {
       this.setState({
         userName,
-        inputValue: userName
+        inputValue: userName,
+        formValid: true
       });
     }
   }
 
   render () {
-    const { inputValue } = this.state;
+    const { inputValue, formValid } = this.state;
     const { logged } = this.props;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={!formValid ? 'incorrect' : ''}>
         {
           logged.status ?
             <>
@@ -86,18 +98,19 @@ class Form extends PureComponent {
                 onInput={this.handleChange}
                 ref={this.inputMessageRef}
               />
-              <button type="submit">Send</button>
+              <Button type="send"/>
             </>
             :
             <>
+              <h3>Authorization</h3>
               <input
                 type="text"
                 name="login"
-                placeholder="Enter your login"
+                placeholder="Login"
                 onInput={this.handleChange}
                 defaultValue={this.state.userName}
               />
-              <button className="button_sign" type="submit">Sign in</button>
+              <Button type="login">Sign in</Button>
               { !inputValue &&
               <span className="input__description">* Enter your name to enter the chat</span> }
             </>

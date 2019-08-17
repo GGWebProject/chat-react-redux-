@@ -5,8 +5,8 @@ const  Authorization = () => {
 
     return(
       <div className="chat__authorization">
-        <h2>Authorization</h2>
-        <Form type="authorization"/>
+        <h2 className="visually-hidden">Chat authorization</h2>
+        <Form />
       </div>
     )
 };

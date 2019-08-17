@@ -1,0 +1,51 @@
+*
+  box-sizing: border-box
+
+body,
+html
+  margin: 0
+  padding: 0
+  width: 100%
+  height: 100%
+
+body
+  color: var(--color-main)
+  font-size: 14px
+  font-family: var(--font-main), sans-serif
+  overflow: hidden
+
+h2, h3, h4
+  font-family: var(--font-header), sans-serif
+
+#root
+  width: 100%
+  height: 100%
+
+.visually-hidden
+  position: absolute
+  clip: rect(0 0 0 0)
+  width: 1px
+  height: 1px
+  margin: -1px
+
+.wrapper
+  &_block
+    max-width: 1200px
+    width: 100%
+    margin: 0 auto
+  &_img
+    font-size: 0
+    img
+      width: 100%
+      height: 100%
+      object-fit: contain
+
+@import "variables.css"
+@import "fonts"
+@import "chat-main"
+@import "componnents/button/button.module"
+@import "componnents/logo/logo.module"
+@import "componnents/header/header.module"
+@import "componnents/authorization/authorization.module"
+@import "componnents/chatWindow/chatWindow.module"
+@import "componnents/chatWindow/messagesList/messageList.module"
