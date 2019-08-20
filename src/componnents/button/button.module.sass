@@ -1,17 +1,110 @@
 .btn
-  padding: 15px
   border-radius: 5px
   cursor: pointer
   font-size: 1.1rem
-  background-color: var(--color-accent)
   color: #ffffff
   font-family: var(--font-main)
   border: none
   transition: opacity .3s
   opacity: 1
+
   &_login
     width: 100%
+    padding: 15px
     transform: translateX(0)
+    background-color: var(--color-accent)
+
+  &_logout
+    padding: 0 10px
+    background-color: var(--color-main)
+
+  &_send
+    background-image: url("../../assets/send.png")
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: center
+    flex-shrink: 0
+    width: 40px
+    height: 40px
+    background-color: transparent
+    @media (max-width: 480px)
+      background-size: 75%
+
+  &_chat-options
+    background-color: var(--color-accent2)
+    padding: 5px
+    width: 40px
+    height: 40px
+    @media (max-width: 480px)
+      width: 30px
+      height: 30px
+    .wrap
+      width: 100%
+      height: 100%
+      position: relative
+      transition: transform .3s
+    .line
+      width: calc(100% - 10px)
+      height: 3px
+      background-color: #ffffff
+      border-radius: 3px
+      position: absolute
+      top: 50%
+      left: 0
+      transition: width .3s .6s, transform .3s .3s
+      @media (max-width: 480px)
+        height: 2px
+      &_1
+        width: 50%
+        transform: translateY(-350%)
+      &_2
+        width: 75%
+        transform: translateY(-50%)
+        &:before
+          position: absolute
+          content: ''
+          width: 100%
+          height: 100%
+          top: 0
+          left: 0
+          transition: transform .3s
+          background-color: #fff
+      &_3
+        width: 100%
+        transform: translateY(250%)
+
+.chat__options
+  .btn_logout
+    margin-left: auto
+  .btn_chat-options
+    margin-right: auto
+
+.open
+  .btn_chat-options
+    .wrap
+      transform: rotate(45deg)
+      transition-delay: .6s
+    .line
+      &_1
+        width: 100%
+        transform: translateY(-50%)
+        transition-property: width, transform
+        transition-delay: 0s, .4s
+        transition-duration: .2s, .2s
+      &_2
+        width: 100%
+        transition-property: width
+        transition-delay: .2s
+        transition-duration: .2s
+        &:before
+          transform: rotate(-90deg)
+          transition-delay: .6s
+      &_3
+        width: 100%
+        transform: translateY(-50%)
+        transition-property: width, transform
+        transition-delay: .2s, .4s
+        transition-duration: .2s, .2s
 
 .incorrect
   .btn

@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import { connect } from "react-redux"
 import {logIn, sendUserMessage} from "../../redux/actions";
 import Button from "../button/Button";
+
 function createMessage(user, text) {
   return { from: user, message: text };
 }
@@ -50,7 +51,7 @@ class Form extends PureComponent {
     const { logIn } = this.props;
     setTimeout(()=>{
       logIn(inputValue);
-    }, 1300);
+    }, 1000);
   }
 
   sendMessage() {
@@ -61,6 +62,7 @@ class Form extends PureComponent {
     if (userMessage) {
       this.setState({
         userMessage,
+        formValid: false
       });
       sendUserMessage(userMessage);
       this.inputMessageRef.current.value = "";

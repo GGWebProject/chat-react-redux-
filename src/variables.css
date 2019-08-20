@@ -1,7 +1,8 @@
 :root {
     --color-accent: #3F9FFF;
+    --color-hover: #1e4b7b;
     --color-main: #333333;
-    --color-error: #FF2955;
+    --color-accent2: #ff277e;
     --font-logo: 'TangoBT';
     --font-header: 'Raleway';
     --font-main: 'Roboto';

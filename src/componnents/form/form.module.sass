@@ -1,0 +1,48 @@
+form
+  display: flex
+  input
+    width: 100%
+    border: none
+    font-size: 1rem
+    padding: 10px
+.chat__authorization
+  form
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 90%
+    min-width: 280px
+    transition: filter 1s, opacity 1s
+    h3
+      text-align: center
+      font-size: 2rem
+      margin: 0 0 20px
+      @media (max-width: 900px)
+        font-size: 1.9rem
+      @media (max-width: 480px)
+        font-size: 1.7rem
+    input
+      border-bottom: 2px solid #eeeeee
+      transition: border-color .3s
+      font-size: 1.3rem
+      background-color: transparent
+      &:focus
+        border-color: #333333
+    & > * + *
+      margin-top: 20px
+    .input__description
+      position: absolute
+      top: 100%
+      left: 0
+      width: 100%
+      font-size: 1rem
+    &.login
+      opacity: 0
+      filter: blur(3px)
+
+.chat__footer
+  form
+    max-width: 600px
+    align-items: stretch
+    justify-content: space-between
+    margin: 0 auto

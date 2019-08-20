@@ -1,0 +1,21 @@
+.chat-app__header
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 100%
+  transition: transform 1s, top 1s
+  .wrapper__block
+    display: flex
+    align-items: center
+    justify-content: center
+
+.join
+  .chat-app__header
+    top: 0
+    transform: translate(-50%, 60px)
+    @media (max-width: 900px)
+      transform: translate(-50%, 40px)
+    @media (max-width: 480px)
+      transform: translate(-50%, 20px)
+

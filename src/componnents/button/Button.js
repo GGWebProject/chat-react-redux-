@@ -4,7 +4,6 @@ const Button = (props) => {
   const { type } = props;
   const btnProps = {
     btnClassName: "",
-    handleClick: null,
     type: '',
   };
 
@@ -20,6 +19,9 @@ const Button = (props) => {
       btnProps.className = 'send';
       btnProps.type = 'submit';
       break;
+    case "chatOptions":
+      btnProps.className = 'chat-options';
+      break;
     default: 
       break;
   }
@@ -27,7 +29,7 @@ const Button = (props) => {
     <button
       type={btnProps.type}
       className={`btn ${btnProps.className ? 'btn_' + btnProps.className : ''}`}
-      onClick={btnProps.handleClick}
+      onClick={props.handleClick}
     >
       {props.children}
     </button>

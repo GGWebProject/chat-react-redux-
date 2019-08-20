@@ -27,14 +27,28 @@
     height: 0
     background-color: white
     z-index: 0
-    transition: width 1s, height 1s, border-radius 1s
+    transition: width 1s, height 1s, border-radius 1s, opacity 1s
+  .wrapper__scroll
+    width: 100%
+    height: 100%
+    max-width: 1200px
+    margin: 0 auto
   & > *
     position: relative
     z-index: 1
   &.join
+    .wrapper__scroll
+      overflow: auto
     &:after
       width: 100%
       height: 100%
       border-radius: 0
+    &.authorization
+      &:after
+        width: 1200px
+        opacity: .7
+        transition: opacity .5s, width .5s
+        @media (max-width: 1200px)
+          width: 100%
 
 

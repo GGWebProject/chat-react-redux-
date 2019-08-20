@@ -8,39 +8,13 @@
   transition-property: opacity
   transition-duration: 1s
   transition-delay: 1s
-  form
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    width: 90%
-    min-width: 280px
-    transition: filter 1s, opacity 1s
-    h3
-      text-align: center
-      font-size: 2rem
-      margin: 0 0 20px
-    input
-      width: 100%
-      border: none
-      border-bottom: 2px solid #eeeeee
-      font-size: 1.3rem
-      padding: 10px
-      transition: border-color .3s
-      &:focus
-        border-color: #333333
-    & > * + *
-      margin-top: 20px
-    .input__description
-      position: absolute
-      top: 100%
-      left: 0
-      width: 100%
-      font-size: 1rem
-    &.login
-      opacity: 0
-      filter: blur(3px)
-
+  margin-bottom: 40px
+  @media (max-height: 800px)
+    top: 500px
+    @media (max-width: 900px)
+      top: 380px
+    @media (max-width: 480px)
+      top: 350px
 .join
   .chat__authorization
     opacity: 1

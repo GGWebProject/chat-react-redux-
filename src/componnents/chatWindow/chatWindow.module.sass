@@ -3,7 +3,9 @@
   display: flex
   flex-direction: column
   align-items: stretch
-  justify-content: flex-start
+  justify-content: flex-end
+  opacity: 0
+  transition: opacity 1s 1s
   .wrapper
     max-width: 1200px
     width: 100%
@@ -13,6 +15,53 @@
     border: 3px solid #ffffff
     width: 100%
     overflow: hidden
+  hr
+    width: 100%
+    height: 2px
+    background-color: #cccccc
+    margin: 0
   .chat__footer
     width: 100%
-    margin: 0 auto
+    padding: 5px 10px
+    position: relative
+  .chat__options
+    display: flex
+    align-items: stretch
+    justify-content: flex-start
+    width: 40px
+    overflow: hidden
+    position: absolute
+    bottom: calc(100% + 10px)
+    left: 10px
+    transition: width 1.2s
+    @media (max-width: 480px)
+      left: 5px
+    &.open
+      width: calc(100% - 20px)
+      @media (max-width: 480px)
+        width: calc(100% - 10px)
+    &__user-name
+      margin: 0 20px
+      align-self: center
+      font-size: 1.3rem
+      text-overflow: ellipsis
+      white-space: nowrap
+      overflow: hidden
+      min-width: 155px
+      flex-shrink: 1
+      @media (max-width: 480px)
+        font-size: 1rem
+    & > *:not(.chat__options__user-name)
+      flex-shrink: 0
+.authorization
+  .chat__window
+    animation: show-block 1s 0s forwards
+  .chat__footer
+    background-color: #ffffff
+
+
+@keyframes show-block
+  from
+    opacity: 0
+  to
+    opacity: 1
