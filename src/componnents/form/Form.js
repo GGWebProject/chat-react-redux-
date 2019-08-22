@@ -14,10 +14,13 @@ class Form extends PureComponent {
       inputValue: null,
       userName: null,
       formValid: false,
+      userMessage: null
     };
+    this.inputLoginRef = createRef();
     this.inputMessageRef = createRef();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleArrowClick = this.handleArrowClick.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.authorization = this.authorization.bind(this);
   }
@@ -46,6 +49,24 @@ class Form extends PureComponent {
     }
   }
 
+  handleArrowClick(e) {
+    const { keyCode } = e;
+    const { userMessage } = this.state;
+    const {inputMessageRef} = this;
+    if ( keyCode !== 38 || !userMessage) {
+      return false;
+    }
+    inputMessageRef.current.value = userMessage.message;
+
+    this.setState({
+      inputValue: userMessage.message,
+      formValid: true
+    },
+    () => {
+      inputMessageRef.current.selectionStart =  userMessage.message.length
+    });
+  }
+
   authorization() {
     const { inputValue } = this.state;
     const { logIn } = this.props;
@@ -57,16 +78,16 @@ class Form extends PureComponent {
   sendMessage() {
     const { inputValue, userName } = this.state;
     const { sendUserMessage } = this.props;
-    const userMessage = inputValue && createMessage(userName, inputValue);
+    const userMessage = createMessage(userName, inputValue);
 
-    if (userMessage) {
-      this.setState({
-        userMessage,
-        formValid: false
-      });
+    this.setState({
+      userMessage,
+      formValid: false
+    },
+    () => {
       sendUserMessage(userMessage);
       this.inputMessageRef.current.value = "";
-    }
+    });
   }
 
   componentDidMount() {
@@ -98,7 +119,9 @@ class Form extends PureComponent {
                 name="message"
                 placeholder="Enter your message"
                 onInput={this.handleChange}
+                onKeyDown={this.handleArrowClick}
                 ref={this.inputMessageRef}
+                autoComplete="off"
               />
               <Button type="send"/>
             </>
@@ -111,6 +134,7 @@ class Form extends PureComponent {
                 placeholder="Login"
                 onInput={this.handleChange}
                 defaultValue={this.state.userName}
+                ref={this.inputLoginRef}
               />
               <Button type="login">Sign in</Button>
               { !inputValue &&

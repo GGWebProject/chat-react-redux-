@@ -30,7 +30,7 @@ function ChatApp() {
 }
 
 function createListenersOnBody(reduserObj) {
-  console.log(document.addEventListener('keydown', (e) => {joinToChat(e, reduserObj)}))
+  document.addEventListener('keydown', (e) => {joinToChat(e, reduserObj)})
 }
 
 function joinToChat(e, reduserObj) {

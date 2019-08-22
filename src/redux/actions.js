@@ -2,7 +2,7 @@ import {
     SAVE_MESSAGE, SIGN_IN, SIGN_OUT, SEND_MESSAGE,
     SOCKET_STATUS, NOTIFICATION_STATUS, WINDOW_VISIBILITY, JOIN
   } from "./actionTypes";
-import socketCreate from "../componnents/wSoscet/WSocket";
+import socketCreate from "../wSoscet/WSocket";
 import store from "./store";
 
 let socket = null;
@@ -54,14 +54,19 @@ export const setWindowVisibilityStatus = (status) => {
 
 export const saveNewMessage = message => {
   //send notification when window is hidden
-  const isWindowVisible = store.getState().isWindowVisible;
-  !isWindowVisible && notify();
+  const { isWindowVisible, saveMessages } = store.getState();
+  const storeMessagesArr = saveMessages.messages;
+  !isWindowVisible && (storeMessagesArr.length !== message.length) && notify();
+  let messageArr = [...message];
+  if (storeMessagesArr.length === messageArr.length && messageArr.length > 1) {
+    messageArr = []
+  }
 
   return (
     {
       type: SAVE_MESSAGE,
       payload: {
-        message
+        message: messageArr,
       }
     }
   )
@@ -85,7 +90,6 @@ export const logIn = userName => {
 export const logOut = () => {
   //close opened socket and remove visibility listener
   socket.close(1000);
-  // document.onvisibilitychange = null;
   window.onblur = null;
   window.onfocus = null;
   return {
@@ -100,14 +104,18 @@ function createSocketMethod(socket) {
   };
 
   socket.onmessage = (e) => {
-    const allMess = JSON.parse(e.data);
-    store.dispatch(saveNewMessage(allMess));
+    const messages = JSON.parse(e.data);
+    let messagesArr = [...messages];
+
+    if (messagesArr.length > 1) {
+      messagesArr.reverse();
+    }
+    store.dispatch(saveNewMessage(messagesArr));
   };
 
   socket.onerror = function(error) {
     store.dispatch(getSocketStatus(true));
     setTimeout(() => {
-      console.log('timeOUT2');
       socketReconnect(socket);
     }, 5000);
   };
@@ -116,9 +124,12 @@ function createSocketMethod(socket) {
     if (event.wasClean) {
       console.log("Соединение закрыто чисто");
     } else {
+      store.dispatch(getSocketStatus(true));
+      setTimeout(() => {
+        socketReconnect(socket);
+      }, 5000);
       console.log("Обрыв соединения"); // например, "убит" процесс сервера
     }
-    console.log("Код: " + event.code + " причина: " + event.reason);
   };
 }
 

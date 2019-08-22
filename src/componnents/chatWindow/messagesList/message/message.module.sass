@@ -1,0 +1,31 @@
+.message
+  background-color: #ffffff
+  max-width: 480px
+  padding: 5px 10px
+  width: 90%
+  list-style: none
+  border: 3px solid transparent
+  &:not(.message__self)
+    margin-left: 0
+    margin-right: auto
+    border-radius: 5px 5px 5px 0
+    border-bottom-color: var(--color-main)
+  &__self
+    margin-left: auto
+    margin-right: 0
+    border-radius: 5px 5px 0 5px
+    border-bottom-color: var(--color-accent)
+  & + .message
+    margin-top: 20px
+  &__info
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__text
+    text-overflow: ellipsis
+    overflow: hidden
+  &__user-name
+    font-weight: bold
+    font-size: 1.1rem
+
+
