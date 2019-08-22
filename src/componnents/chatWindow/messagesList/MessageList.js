@@ -34,7 +34,7 @@ function scrollMessageToBottom(messaggesNumb) {
   const scrollHeight = chatWindow.offsetHeight - wrapHeight;
   const { scrollTop: scrollYPosition } = scrollWrapper;
 
-  if (scrollHeight - scrollYPosition >= 550) {
+  if (scrollHeight - scrollYPosition > 550 && scrollYPosition !== 0) {
     return;
   }
 
